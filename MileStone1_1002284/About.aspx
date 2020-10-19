@@ -43,6 +43,7 @@
                      sercies and products to our customers. We believe that our customers are apart of 
                      our family and therefore deserve the best. Contact Us to find out how to become apart of 
                      our family.
+                     <asp:CheckBox ID="CheckBox1" runat="server" />
                 </p>
             </div>
         </div>
