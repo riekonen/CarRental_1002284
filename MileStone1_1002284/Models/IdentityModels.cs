@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -13,7 +15,18 @@ namespace MileStone1_1002284.Models
     // You can add User data for the user by adding more properties to your User class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
-        public ClaimsIdentity GenerateUserIdentity(ApplicationUserManager manager)
+        //public ICollection<Cart> mCarts { get; set; }
+
+        public ApplicationUser(string uName)
+        {
+            base.UserName= uName;
+        }
+        public ApplicationUser()
+        {
+
+        }
+
+                public ClaimsIdentity GenerateUserIdentity(ApplicationUserManager manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = manager.CreateIdentity(this, DefaultAuthenticationTypes.ApplicationCookie);
@@ -30,8 +43,25 @@ namespace MileStone1_1002284.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("ChezRentals", throwIfV1Schema: false)
         {
+        }
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<Car> Cars { get; set; }
+        public DbSet<Price> Prices { get; set; }
+
+
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+           // modelBuilder.Entity<Cart>().HasMany(c => c.ApplicationUser);
+
+           /* modelBuilder.Entity<IdentityUserLogin>().HasKey<string>(l => l.UserId);
+            modelBuilder.Entity<IdentityRole>().HasKey<string>(r => r.Id);
+            modelBuilder.Entity<IdentityUserRole>().HasKey(r => new { r.RoleId, r.UserId });
+
+            modelBuilder.Entity<Cart>().HasRequired(c => c.ApplicationUser).WithMany(t => t.mCarts).Map(m => m.MapKey("UserId"));*/
+            base.OnModelCreating(modelBuilder);
         }
 
         public static ApplicationDbContext Create()

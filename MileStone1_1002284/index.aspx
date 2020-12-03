@@ -56,129 +56,56 @@
                <h1 class="displayText">Featured Rentals</h1>
            </div>
        </div>
+    </div>
 
         <br />
 
-       <div class="row nPadding" >
-            
-           <div class="col-md-4">
-                <div class="card cardStyle">
-                    <img class="card-img-top" src="images/hondacivic.png" />
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-6 nPadding">
-                                <h4 class="card-title">Luxury</h4>
-                                <h6>Honda Civic</h6>
-                            </div>
-                            <div class="col-sm-6 cardPricing">
-                               <a href="Products.aspx" class="btn stretched-link card-text ">From $10,000 JMD/day</a>
-                            </div>
+         <asp:ListView ID="CarsList" runat="server" DataKeyNames="CarID" ItemType="MileStone1_1002284.Models.Car" 
+             ClientIDMode="Predictable" ClientIDRowSuffix="CarID" GroupItemCount="3" ItemPlaceholderID="itemPlaceholder" GroupPlaceholderID="groupPlaceholder" >
+                <LayoutTemplate>
+                    <div class="container-fluid" runat="server" id="groupPlaceholder">
+                        
+                    </div>
+
+                </LayoutTemplate>
+                <GroupTemplate>
+                    <div class="row nPadding"  >                        
+                        
+                       <asp:PlaceHolder  runat="server" id="itemPlaceholder">
+
+                       </asp:PlaceHolder>
+                        
+                    </div>
+                        
+                   
+                </GroupTemplate>
+                
+
+                <ItemTemplate>
+
+                    <div class="col-md-4">
+                        <div class="card cardStyle">
+                             <img class="card-img-top" runat="server" src='<%# "images/"+Item.imageUrl %>'/>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                           <h5> <asp:Label ID="lbl_Category" runat="server" Text='<%# ""+Item.Category %>'></asp:Label></h5>
+                                            <asp:Label ID="lbl_CarName" runat="server" Text='<%# ""+Item.CarName %>'></asp:Label>
+                                        </div>
+                                        <div class="col-sm-6 cardPricing">
+                                            <a href="Products.aspx" class="btn stretched-link card-text ">From <%#"$"+Item.Price.UnitPrice %> JMD/day</a>
+                                        </div>
+                                    </div>
+                                </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        
-            
-            <div class="col-md-4">
-                <div class="card cardStyle">
-                    <img class="card-img-top" src="images/markx.png" />
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-6 nPadding">
-                                <h4 class="card-title">Premium</h4>
-                                <h6>Toyota Mark X</h6>
-                            </div>
-                            <div class="col-sm-6 cardPricing">
-                               <a href="Products.aspx" class="btn stretched-link card-text ">From $7,500 JMD/day</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+                </ItemTemplate>
+        </asp:ListView>
 
 
-           <div class="col-md-4">
-                <div class="card cardStyle">
-                    <img class="card-img-top" src="images/axio.png" />
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-6 nPadding">
-                                <h4 class="card-title">Standard</h4>
-                                <h6>Toyota Axio</h6>
-                            </div>
-                            <div class="col-sm-6 cardPricing">
-                               <a href="Products.aspx" class="btn stretched-link card-text ">From $5,000 JMD/day</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> 
-
-        </div>
-
-        <div class="row nPadding">
-            
-            <div class="col-md-4">
-                <div class="card cardStyle">
-                    <img class="card-img-top" src="images/benz.png" />
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-6 nPadding">
-                                <h4 class="card-title">Luxury</h4>
-                                <h6>2018 C-Class Benz</h6>
-                            </div>
-                            <div class="col-sm-6 cardPricing">
-                               <a href="Products.aspx" class="btn stretched-link card-text ">From $5,000 JMD/day</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-md-4">
-                <div class="card cardStyle">
-                    <img class="card-img-top" src="images/hondafit.png" />
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-6 nPadding">
-                                <h4 class="card-title">Standard</h4>
-                                <h6>Honda Fit</h6>
-                            </div>
-                            <div class="col-sm-6 cardPricing">
-                               <a href="Products.aspx" class="btn stretched-link card-text ">From $5,000 JMD/day</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> 
-        
-        
-            <div class="col-md-4">
-                <div class="card cardStyle">
-                    <img class="card-img-top" src="images/vitz.jpg" />
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-6 nPadding">
-                                <h4 class="card-title">Standard</h4>
-                                <h6>Toyota Vitz</h6>
-                            </div>
-                            <div class="col-sm-6 cardPricing">
-                               <a href="Products.aspx" class="btn stretched-link card-text ">From $5,000 JMD/day</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> 
-        </div>
-
-
-
-    </div>
-
-
-
-
-
+        <br />
+        <br />
 
 
 

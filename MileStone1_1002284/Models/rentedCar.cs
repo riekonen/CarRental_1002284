@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace MileStone1_1002284.Classes
+namespace MileStone1_1002284.Models
 {
     public class rentedCar
     {
@@ -12,12 +12,12 @@ namespace MileStone1_1002284.Classes
         public decimal sTotal { get; set; }
         public int rDays { get; set; }
 
-        public rentedCar(Car chosenCar,decimal rentalPrice,decimal subTotal,  int numDaysRented)
+        public rentedCar(Car chosenCar,decimal rentalPrice,decimal subTotal)
         {
             cCar = chosenCar;
             rPrice = rentalPrice;
             sTotal = subTotal;
-            rDays = numDaysRented;
+            rDays = 1;
         }
     }
 }

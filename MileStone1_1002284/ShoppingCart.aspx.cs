@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using MileStone1_1002284.Models;
+using Microsoft.AspNet.Identity;
 
 namespace MileStone1_1002284
 {
@@ -50,12 +52,31 @@ namespace MileStone1_1002284
 
                 for (int x = 0; x < rList.Count; x++)
             {
-                if (rList[x].cCar.car_ID.Equals(carId))
+                if (rList[x].cCar.CarID.Equals(carId))
                 {
                     rList.RemoveAt(x);
                     Session["chosenCarsSession"] = rList;
+
+                    if (User.Identity.IsAuthenticated)
+                    {
+                        string uName = User.Identity.GetUserName().ToString();
+                        var _db = new MileStone1_1002284.Models.ApplicationDbContext();
+                        Cart cartObj = (from c in _db.Carts where c.ApplicationUser.Id == uName && c.CarID == carId select c).First<Cart>();
+                        if (cartObj != null)
+                        {
+                            _db.Carts.Remove(cartObj);
+                            _db.SaveChanges();
+                            ClientScript.RegisterStartupScript(GetType(), "Message", "callAlert('Removed!')", true);
+
+                        }
+
+                    }
                 }
-            }
+            }     
+
+
+
+
 
             popGridVew();
         }
@@ -98,6 +119,37 @@ namespace MileStone1_1002284
             if (Session["chosenCarsSession"] != null)
             {
                 rList = (List<rentedCar>)Session["chosenCarsSession"];
+            }
+            else
+            {
+                if (User.Identity.IsAuthenticated)
+                {
+                    string uName = User.Identity.GetUserName().ToString();
+                    var _db = new MileStone1_1002284.Models.ApplicationDbContext();
+                    //IQueryable<Cart> query = _db.Carts;
+                    var mUser = (from u in _db.Carts where u.ApplicationUser.Id == uName select u).FirstOrDefault();
+
+                    if (mUser == null)
+                    {
+
+                    }
+                    else
+                    {
+                        IEnumerable<Cart> mUserCart = (from u in _db.Carts where u.ApplicationUser.Id == uName select u);
+                        List<Cart> userCars = mUserCart.ToList();                                          
+
+                        foreach (var c in userCars)
+                        {
+                            rentedCar rCar = new rentedCar(c.Car, c.Car.Price.UnitPrice, c.SubTotal);
+                            rList.Add(rCar);
+                        }
+
+                        //rCar = new rentedCar(tempCar, price, subTotal);
+
+                        Session["chosenCarsSession"] = rList;
+                    }
+                
+                }
             }
                 GridView1.DataSource = rList;
                 GridView1.DataBind();

@@ -14,9 +14,9 @@
              <div class="col-sm-12 col-md-7">
                   <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="false" ShowHeaderWhenEmpty="true" CssClass="myDataGrid" CellPadding="2" CellSpacing="2" Width="80%">       
                         <Columns>    
-                             <asp:boundfield datafield="cCar.car_ID" headertext="Model ID"/>
-                             <asp:boundfield datafield="cCar.car_Name" headertext="Car"/>
-                             <asp:boundfield datafield="cCar.category" headertext="Category"/>
+                             <asp:boundfield datafield="cCar.CarID" headertext="Model ID"/>
+                             <asp:boundfield datafield="cCar.CarName" headertext="Car"/>
+                             <asp:boundfield datafield="cCar.Category" headertext="Category"/>
                              <asp:boundfield datafield="rDays" headertext="Days Rented"/>
                              <asp:boundfield datafield="sTotal" headertext="Sub Total"/>
                              <asp:TemplateField headertext="Remove">

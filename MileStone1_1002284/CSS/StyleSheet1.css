@@ -15,12 +15,15 @@ body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-.displayText{
+.displayText label{
     color:white;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display:block;
+    padding:20px;
+    text-align:center;
 }
 
-.paragraphText {
+.paragraphText p label{
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 14px;
     color: white;
@@ -99,12 +102,12 @@ body {
     padding: 15px;
 }
 
-.cardPricing {
+.cardPricing ,label {
     background-color: darkorange;
     text-align:center;
     position:center;
     font-weight:bold;
-    padding: 15px;
+    padding: 10px;
 }
 
 .abtContentDiv {
@@ -128,6 +131,12 @@ body {
     font-size:16px;
 }
 
+.imgButton{
+    
+    width:5px;
+    height:5%;
+    
+}
 
 
 

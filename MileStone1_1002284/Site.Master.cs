@@ -8,6 +8,10 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
 
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security;
+using MileStone1_1002284.Models;
+
 namespace MileStone1_1002284
 {
     public partial class SiteMaster : MasterPage
@@ -69,8 +73,37 @@ namespace MileStone1_1002284
 
         protected void Page_Load(object sender, EventArgs e)
         {
+           /* if (!IsPostBack)
+            {
+                System.Security.Principal.IPrincipal principal = Page.User;
+                if (principal.Identity.IsAuthenticated)
+                {
+                    if (principal.IsInRole("canEdit"))
+                    {
+                        
+                    }
+                }
+            }
+           */
+        }
+
+        public bool  checkUserRights()
+        {
+            bool decision=false;
+
+            System.Security.Principal.IPrincipal principal = Page.User;
+            if (principal.Identity.IsAuthenticated)
+            {
+                if (principal.IsInRole("canEdit"))
+                {
+                    decision = true;
+                }
+            }
+
+            return decision;
 
         }
+
 
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
         {
